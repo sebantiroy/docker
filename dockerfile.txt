@@ -1,0 +1,5 @@
+optopenjdk/openjdk11
+WORKDIR /
+ADD account-0.0.1-SNAPSHOT.jar account-0.0.1-SNAPSHOT.jar
+EXPOSE 5000
+CMD java -account-0.0.1-SNAPSHOT.jar

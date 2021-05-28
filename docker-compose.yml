@@ -1,0 +1,41 @@
+version: '3.7'
+services: 
+   
+    eureka-server:
+        image: sebanti/eureka-server-service:0.1
+        ports: 
+            - "8761:8761"
+        restart: always
+       
+        networks:
+            - app-network
+    
+    truyum:
+        image: sebanti/truyum-service:0.1
+        ports: 
+            - "5001:5001"
+        restart: always
+        environment:
+            EUREKA_HOST: eureka-server-service
+                
+        depends_on:
+            - eureka-server-service
+        networks:
+            - app-network
+ 
+    zuul-gateway:
+        image: sebanti/zuul-gateway-service:0.1
+        ports: 
+            - "5000:5000"
+        restart: always
+        environment:
+            EUREKA_HOST: eureka-server-service
+        
+        depends_on:
+            - eureka-server-service
+        networks:
+            - app-network
+ 
+# Networks to be created to facilitate communication between containers
+networks:
+    app-network:

@@ -1,7 +1,7 @@
 version: '3.7'
 services: 
    
-    eureka-server:
+    eureka-server-service:
         image: sebanti/eureka-server-service:0.1
         ports: 
             - "8761:8761"
@@ -10,7 +10,7 @@ services:
         networks:
             - app-network
     
-    truyum:
+    truyum-service:
         image: sebanti/truyum-service:0.1
         ports: 
             - "5001:5001"
@@ -23,7 +23,7 @@ services:
         networks:
             - app-network
  
-    zuul-gateway:
+    zuul-gateway-service:
         image: sebanti/zuul-gateway-service:0.1
         ports: 
             - "5000:5000"

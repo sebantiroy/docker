@@ -1,8 +1,8 @@
 version: '3.7'
 services: 
    
-    eureka-server-service:
-        image: sebanti/eureka-server-service:0.1
+    eureka-server:
+        image: sebanti/eureka-server:0.1
         ports: 
             - "8761:8761"
         restart: always
@@ -10,29 +10,29 @@ services:
         networks:
             - app-network
     
-    truyum-service:
-        image: sebanti/truyum-service:0.1
+    truyum-servicee:
+        image: sebanti/truyum-servicee:0.1
         ports: 
-            - "5001:5001"
+            - "8090:8090"
         restart: always
         environment:
-            EUREKA_HOST: eureka-server-service
+            EUREKA_HOST: eureka-server
                 
         depends_on:
-            - eureka-server-service
+            - eureka-server
         networks:
             - app-network
  
-    zuul-gateway-service:
-        image: sebanti/zuul-gateway-service:0.1
+    zuul-gateway:
+        image: sebanti/zuul-gateway:0.1
         ports: 
             - "5000:5000"
         restart: always
         environment:
-            EUREKA_HOST: eureka-server-service
+            EUREKA_HOST: eureka-server
         
         depends_on:
-            - eureka-server-service
+            - eureka-server
         networks:
             - app-network
  
